@@ -19,7 +19,7 @@ queryReport = input("Enter the file name based on the path of the query report: 
 df1 = pd.read_excel(queryReport, sheet_name='Sheet1', usecols="A, M, V, P, AI, AJ, AR") #df = dataframe variable and import file here
 df1.dropna(inplace=True) #drop cells with NaN
 df1.drop(df1.loc[df1['Grade']=='F'].index, inplace=True) # Delete grades that are equal to F
-
+df1.to_csv('queryReprot.csv', index = None, header=True) #output to CSV
 #==========================================================================================================================
 #Grab the second excel file which is the check down list
 #checkDown = input("Enter the file name based on the path of the check down: ")
