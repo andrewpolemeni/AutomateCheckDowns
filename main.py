@@ -36,8 +36,6 @@ class App(QMainWindow):
 
         # Call functions here to execute them in the UI
         #self.openFileNameDialog()
-        #self.openFileNamesDialog()
-        #self.saveFileDialog()
         
         self.show() # Here is how we actually show the UI
     
