@@ -1,5 +1,5 @@
-#import grabrows
 import sys
+import grabrows
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox, QFileDialog
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
@@ -32,6 +32,7 @@ class App(QMainWindow):
         self.button = QPushButton('2) Genereate the reports', self)
         self.button.move(100, 150)
         self.button.resize(200, 50)
+        self.button.clicked.connect(grabrows.GenerateAllSpreadsheets)
 
         # Call functions here to execute them in the UI
         #self.openFileNameDialog()
@@ -43,9 +44,10 @@ class App(QMainWindow):
     def openFileNameDialog(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"Open the Query file to generate student checkdowns", "","Excel Files (*.xlsx)", options=options)
-        if fileName:
-            print(fileName)
+        filename1, _ = QFileDialog.getOpenFileName(self,"Open the Query file to generate student checkdowns", "","Excel Files (*.xlsx)", options=options)
+        if filename1:
+            print(filename1)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
