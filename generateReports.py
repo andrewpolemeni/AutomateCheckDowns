@@ -8,9 +8,10 @@
 import sys, os.path
 import pandas as pd
 import openpyxl
+import numpy as np
 from openpyxl.styles import PatternFill
-from openpyxl.styles.colors import YELLOW, BLACK
-import main
+from openpyxl.styles.colors import YELLOW, BLACK, BLUE
+#import main
 #==================================================================================================================================================================================
 # NEED HELP GETTING VARIABLE FROM PYQT5
 
@@ -51,6 +52,8 @@ def GetStudentData(query_filename):
     # sid is student id
     
     df1 = pd.read_excel(query_filename, sheet_name='sheet1', usecols="A, B, C, D, E, F, G, H, M, N") #df = dataframe variable and import file here
+    df1["Grade"] = df1["Grade"].fillna(value="IP")
+    #df1.Grade.replace(np.NaN, "IP", inplace=True)
     df1.dropna(inplace=True) #drop cells with NaN
     #df1.drop(df1.index[0]) # DROP the first row because of how the report generates from query
     df1.drop(df1.loc[df1['Grade']=='F'].index, inplace=True) # Delete grades that are equal to F
@@ -103,11 +106,12 @@ def CreateStudentFile(df):
 
         for row in df.iterrows():
             # Define taken and name variable
-            taken = row[1]['Subject'] + str(row[1]['Catalog'])
+            taken = str(row[1]['Subject'] + str(row[1]['Catalog']))[0:7]
             name = row[1]['First Name'] + "_" + str(row[1]['Last'])
+            #IP = df.loc[df['Grade'] == "IP"]
 
             if course == taken:
-                
+                #print(name, course, taken)
                 ws2.cell(row=i, column=4).value = str(row[1]['Term'])
                 ws2.cell(row=i, column=4).fill = PatternFill(fgColor=YELLOW, fill_type = "solid") #IF TAKEN CHECK OFF WITH YELLOW
                 
@@ -117,7 +121,7 @@ def CreateStudentFile(df):
                 ws2.cell(row=i, column=8).fill = PatternFill(fgColor=BLACK, fill_type="solid")
                 ws2.cell(row=i, column=9).fill = PatternFill(fgColor=BLACK, fill_type="solid")
                 ws2.cell(row=i, column=10).fill = PatternFill(fgColor=BLACK, fill_type="solid")
-
+            
     #Once the sheet is filled out
     file_to_save = file + "_" + name + '.xlsx'
     wb2.save(mainPath + file_to_save)
@@ -140,3 +144,4 @@ def GenerateAllSpreadsheets():
     file = CreateStudentFile(df2)
     print(df2['Acad Plan'].iloc[0])
     file = CreateStudentFile(df2)
+GenerateAllSpreadsheets()
