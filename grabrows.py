@@ -81,14 +81,19 @@ def CreateStudentFile(df):
 
     if df['Acad Plan'].iloc[0] == 633300: # Find the dataframe by string and equal to program number
 
-        file = "BSIT"
+        file = "BSEET"
 
     wb2 = openpyxl.load_workbook(file + ".xlsx")
     ws2 = wb2.active
     
-    # Add first and last names
-    #ws2.cell(row=4, column=3).value = str(df.loc[0]["First Name"]) + " " + str(df.loc[0]["Last"])
-    #ws2.cell(row=5, column=3).value = str(df.loc[0]["ID"])
+    j = df.first_valid_index()
+
+    # We now simply go through each column of the BSET Checkdown
+    # and compare against courses taken
+    ws2.cell(row=4, column=3).value = str(df.loc[j]["First Name"]) + " " + str(df.loc[j]["Last"])
+    ws2.cell(row=5, column=3).value = str(df.loc[j]["ID"])
+
+ 
 
 # We now simply go through each column of the BSET Checkdown
 # and compare against courses taken
