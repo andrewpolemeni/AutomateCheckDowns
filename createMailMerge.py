@@ -18,8 +18,8 @@ for root, dirs, files in os.walk(targetdir):
         if ext.lower().endswith(('.xlsx')):
             fullpath = os.path.join(os.path.abspath(root), filename)
             data.append((filename, fullpath))
-df2 = pd.DataFrame(data, columns=['Filename', 'Fullpath'])
-print(df2)
+df1 = pd.DataFrame(data, columns=['Filename', 'Fullpath'])
+print(df1)
             
 # create a data frame for the student report array
 
@@ -30,8 +30,11 @@ print(df2)
 # 2) create data frame from query file.
 #============================================================================================================================
 def getMailMergeData(query_filename):
-    df1 = pd.read_excel(query_filename, sheet_name='sheet1', usecols="A, B, C, D, E") #df = dataframe variable and import file here
-    df1.drop_duplicates(subset ="ID", inplace = True)
+    df2 = pd.read_excel(query_filename, sheet_name='sheet1', usecols="A, B, C, D, E") #df = dataframe variable and import file here
+    df2.drop_duplicates(subset ="ID", inplace = True)
+    # create another dataframe to merge df1 into df2
+    #df3 = df1.merge(df2, left_on="Filename", right_on="Campus Email", how="right")
+    print(df2)
     #print(df1)
 
 
