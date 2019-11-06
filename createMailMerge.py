@@ -10,10 +10,16 @@ import openpyxl
 # 1) OS walk the directory to find path names.
 #============================================================================================================================
 # path variable will change based on where your student check down files are.
-path = "ATC_STUDENT_CHECKDOWNS/"
-studentReportFiles = [os.path.join(d, x)
-            for d, dirs, files in os.walk(path)
-            for x in files if x.endswith(".xlsx")]
+targetdir = "ATC_STUDENT_CHECKDOWNS/"
+data = list()
+for root, dirs, files in os.walk(targetdir):
+    for filename in files:
+        nm, ext = os.path.splitext(filename)
+        if ext.lower().endswith(('.xlsx')):
+            fullpath = os.path.join(os.path.abspath(root), filename)
+            data.append((filename, fullpath))
+df2 = pd.DataFrame(data, columns=['Filename', 'Fullpath'])
+print(df2)
             
 # create a data frame for the student report array
 
@@ -25,11 +31,8 @@ studentReportFiles = [os.path.join(d, x)
 #============================================================================================================================
 def getMailMergeData(query_filename):
     df1 = pd.read_excel(query_filename, sheet_name='sheet1', usecols="A, B, C, D, E") #df = dataframe variable and import file here
-    df1.drop_duplicates(subset ="ID", inplace = True) 
-    df0 = pd.DataFrame([studentReportFiles])
-    print(df0)
-    df1.append(df0)
-    print(df1)
+    df1.drop_duplicates(subset ="ID", inplace = True)
+    #print(df1)
 
 
 #def createMailMergeFile():
