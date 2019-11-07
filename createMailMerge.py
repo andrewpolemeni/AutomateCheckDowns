@@ -52,11 +52,11 @@ def getMailMergeData(query_filename):
     
     # create file to save with timestamp
     t = time.localtime()
-    timestamp = time.strftime("%b-%d-%Y_%H%M", t)
+    timestamp = time.strftime("%b-%d-%Y", t)
     # write dataframes to excel file for mail merge
-    writer = pd.ExcelWriter("createMailMerge_" + timestamp + ".xlsx", engine='xlsxwriter')
-    df2.to_excel(writer, sheet_name="Sheet1")
-    df1.to_excel(writer, sheet_name="Sheet2")
+    writer = pd.ExcelWriter("MailMerge_" + timestamp + ".xlsx", engine='xlsxwriter')
+    df2.to_excel(writer, sheet_name="Sheet1", index=False)
+    df1.to_excel(writer, sheet_name="Sheet1", index=False, startcol=5)
     writer.save()
 #def createMailMergeFile():
 
