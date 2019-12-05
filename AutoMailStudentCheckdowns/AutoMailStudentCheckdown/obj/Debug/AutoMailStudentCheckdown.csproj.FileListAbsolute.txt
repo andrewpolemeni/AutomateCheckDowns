@@ -1,0 +1,6 @@
+C:\Users\763819\source\repos\AutoMailStudentCheckdown\AutoMailStudentCheckdown\bin\Debug\AutoMailStudentCheckdown.exe.config
+C:\Users\763819\source\repos\AutoMailStudentCheckdown\AutoMailStudentCheckdown\bin\Debug\AutoMailStudentCheckdown.exe
+C:\Users\763819\source\repos\AutoMailStudentCheckdown\AutoMailStudentCheckdown\bin\Debug\AutoMailStudentCheckdown.pdb
+C:\Users\763819\source\repos\AutoMailStudentCheckdown\AutoMailStudentCheckdown\obj\Debug\AutoMailStudentCheckdown.csprojAssemblyReference.cache
+C:\Users\763819\source\repos\AutoMailStudentCheckdown\AutoMailStudentCheckdown\obj\Debug\AutoMailStudentCheckdown.exe
+C:\Users\763819\source\repos\AutoMailStudentCheckdown\AutoMailStudentCheckdown\obj\Debug\AutoMailStudentCheckdown.pdb
